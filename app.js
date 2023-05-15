@@ -29,3 +29,40 @@ for(i=0; i < imgPeople.length; i++) {
     dataPeople.classList.toggle('data-active')
   })}
 
+const logoNav = document.querySelector('#imagem2')
+
+logoNav.addEventListener('click', sumirImagem)
+
+
+function sumirImagem() {
+  var imagem = document.getElementById("imagem1");
+  var posicaoX = 0;
+  var posicaoY = 100;
+  
+  // define as coordenadas iniciais da imagem
+  imagem.style.left = posicaoX + "%";
+  imagem.style.top = posicaoY + "%";
+  
+  // exibe a imagem
+  imagem.style.display = "block";
+  
+  var animacao = setInterval(frame, 10);
+  
+  function frame() {
+    if (posicaoX == 100 || posicaoY == -100) {
+      clearInterval(animacao);
+      // esconde a imagem
+      imagem.style.display = "none";
+      // redefine as coordenadas para a posição inicial
+      posicaoX = 0;
+      posicaoY = 100;
+      imagem.style.left = posicaoX + "%";
+      imagem.style.top = posicaoY + "%";
+    } else {
+      posicaoX++;
+      posicaoY--;
+      imagem.style.left = posicaoX + "%";
+      imagem.style.top = posicaoY + "%";
+    }
+  }
+}
