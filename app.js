@@ -46,7 +46,7 @@ function sumirImagem() {
   // exibe a imagem
   imagem.style.display = "block";
   
-  var animacao = setInterval(frame, 10);
+  var animacao = setInterval(frame, 5);
   
   function frame() {
     if (posicaoX == 100 || posicaoY == -100) {
@@ -66,3 +66,16 @@ function sumirImagem() {
     }
   }
 }
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach((entry)=> {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show')
+    }else{
+      entry.target.classList.remove('show')
+    }
+  });
+});
+
+const hiddenElements = document.querySelectorAll('.hidden');
+hiddenElements.forEach((el)=> observer.observe(el))
